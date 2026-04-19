@@ -18,3 +18,13 @@ apiClient.interceptors.request.use(
   },
   (error) => Promise.reject(error),
 );
+
+export const fetchPosts = async (page = 1, limit = 10) => {
+  try {
+    const response = await apiClient.get(`/posts?page=${page}&limit=${limit}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    throw error;
+  }
+};
